@@ -1,0 +1,337 @@
+/* ===========================================================
+   TEF Canada — Expression Orale · French with Guri
+   =========================================================== */
+:root {
+  --blue: #0b4f9c;
+  --blue-dark: #073a76;
+  --red: #d1362f;
+  --ink: #1c2430;
+  --muted: #5b6672;
+  --line: #e3e8ef;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --ok: #178a4c;
+  --ok-bg: #e6f6ec;
+  --ko: #c0392b;
+  --ko-bg: #fdecea;
+  --shadow: 0 6px 24px rgba(16, 42, 82, 0.08);
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+/* ---------- topbar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 22px;
+  background: linear-gradient(90deg, var(--blue-dark), var(--blue));
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: var(--shadow);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  text-decoration: none;
+}
+.brand-mark { font-size: 26px; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-text strong { font-size: 17px; }
+.brand-text small { opacity: 0.85; font-size: 12px; }
+.progress-badge {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* ---------- layout ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 24px;
+  padding: 24px;
+}
+
+/* ---------- sidebar ---------- */
+.sidebar {
+  align-self: start;
+  position: sticky;
+  top: 84px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.sidebar-title {
+  margin: 0 0 12px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.class-list { display: flex; flex-direction: column; gap: 6px; }
+.class-link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "num check" "name check";
+  align-items: center;
+  text-align: left;
+  gap: 0 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font: inherit;
+  color: var(--ink);
+  transition: background 0.15s, border-color 0.15s;
+}
+.class-link:hover { background: #eef3fb; }
+.class-link.is-active { background: #e7f0fd; border-color: #bcd6f7; }
+.class-num { grid-area: num; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--blue); font-weight: 700; }
+.class-name { grid-area: name; font-size: 14px; }
+.class-check { grid-area: check; color: var(--ok); font-weight: 700; }
+.class-link.is-done .class-name { color: var(--muted); }
+.sidebar-foot { margin: 16px 0 0; font-size: 12px; color: var(--muted); }
+
+/* ---------- content ---------- */
+.content { min-width: 0; }
+
+.hero {
+  background: linear-gradient(135deg, #0b4f9c 0%, #073a76 100%);
+  color: #fff;
+  padding: 34px 32px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.hero h1 { margin: 0 0 6px; font-size: 30px; }
+.hero-sub { margin: 0 0 14px; opacity: 0.9; font-weight: 600; }
+.hero-lead { margin: 0; opacity: 0.92; max-width: 60ch; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+.course-card {
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  cursor: pointer;
+  font: inherit;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  transition: transform 0.15s, box-shadow 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.course-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(16, 42, 82, 0.14); }
+.course-card h3 { margin: 4px 0 0; font-size: 18px; color: var(--blue-dark); }
+.course-card p { margin: 0; color: var(--muted); font-size: 14px; }
+.course-card-top { display: flex; justify-content: space-between; align-items: center; }
+.course-card.is-done { border-color: #bfe3cd; }
+.card-cta { margin-top: auto; color: var(--blue); font-weight: 600; font-size: 14px; }
+.duration { color: var(--muted); font-size: 12px; }
+
+.badge {
+  display: inline-block;
+  background: #e7f0fd;
+  color: var(--blue-dark);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+/* ---------- class view ---------- */
+.class-header {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--red);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  box-shadow: var(--shadow);
+}
+.class-header h1 { margin: 10px 0 4px; font-size: 26px; color: var(--blue-dark); }
+.class-sub { margin: 0; color: var(--muted); }
+
+.block {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  margin-top: 18px;
+  box-shadow: var(--shadow);
+}
+.block h2 { margin: 0 0 14px; font-size: 20px; color: var(--blue-dark); }
+
+.objectives { margin: 0; padding-left: 20px; }
+.objectives li { margin: 6px 0; }
+
+.lesson { margin-bottom: 18px; }
+.lesson:last-child { margin-bottom: 0; }
+.lesson h3 { margin: 0 0 6px; font-size: 17px; color: var(--ink); }
+.lesson p { margin: 6px 0; }
+.note {
+  background: #fff8e6;
+  border: 1px solid #f3e0a8;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-top: 10px;
+  font-size: 14.5px;
+}
+
+/* ---------- dialogue ---------- */
+.dialogue { display: flex; flex-direction: column; gap: 8px; }
+.dialogue-line {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f4f7fc;
+}
+.dialogue-line:nth-child(even) { background: #eef3fb; }
+.speaker { font-weight: 700; color: var(--blue); font-size: 14px; }
+.utterance { font-size: 15px; }
+
+/* ---------- vocabulary ---------- */
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.vocab-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fafcff;
+}
+.vocab-fr { font-weight: 600; color: var(--ink); }
+.vocab-en { font-size: 13.5px; color: var(--muted); }
+
+/* ---------- quiz ---------- */
+.quiz-intro { color: var(--muted); margin-top: -6px; }
+.quiz-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  background: #fafcff;
+}
+.quiz-q { font-weight: 600; margin: 0 0 12px; }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.option {
+  text-align: left;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 11px 14px;
+  cursor: pointer;
+  font: inherit;
+  transition: border-color 0.12s, background 0.12s;
+}
+.option:hover:not(:disabled) { border-color: var(--blue); background: #f2f7ff; }
+.option:disabled { cursor: default; }
+.option.correct { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); font-weight: 600; }
+.option.wrong { background: var(--ko-bg); border-color: var(--ko); color: var(--ko); font-weight: 600; }
+.feedback { margin-top: 10px; padding: 10px 12px; border-radius: 9px; font-size: 14.5px; }
+.feedback.ok { background: var(--ok-bg); color: var(--ok); }
+.feedback.ko { background: var(--ko-bg); color: var(--ko); }
+
+.open-answer {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 10px 12px;
+  font: inherit;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+.reveal-btn, .complete-btn, .nav-prev, .nav-next {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.reveal-btn:hover, .complete-btn:hover, .nav-prev:hover, .nav-next:hover { background: var(--blue-dark); }
+.reveal-btn { background: #eef3fb; color: var(--blue-dark); }
+.reveal-btn:hover { background: #e0eafa; }
+.model-answer {
+  margin-top: 10px;
+  background: #eef7f0;
+  border: 1px solid #bfe3cd;
+  border-radius: 9px;
+  padding: 12px 14px;
+  font-size: 14.5px;
+}
+.hidden { display: none; }
+
+.quiz-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.score { font-weight: 700; color: var(--blue-dark); }
+.complete-btn:disabled { background: var(--ok); cursor: default; }
+
+/* ---------- class nav ---------- */
+.class-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 22px 0 8px;
+}
+.nav-prev, .nav-next { background: #fff; color: var(--blue-dark); border: 1px solid var(--line); }
+.nav-prev:hover, .nav-next:hover { background: #eef3fb; }
+
+/* ---------- footer ---------- */
+.sitefoot {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 24px 16px 40px;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .class-list { flex-direction: row; flex-wrap: wrap; }
+  .class-link { flex: 1 1 140px; }
+  .dialogue-line { grid-template-columns: 1fr; gap: 2px; }
+  .speaker { font-size: 13px; }
+}

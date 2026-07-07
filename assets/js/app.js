@@ -97,7 +97,7 @@
       el("p", {
         class: "hero-lead",
         text:
-          "Un parcours complet en 6 classes pour réussir l'épreuve d'Expression Orale du TEF Canada : " +
+          "Un parcours complet en 8 classes pour réussir l'épreuve d'Expression Orale du TEF Canada : " +
           "leçons, exemples de dialogues, vocabulaire utile et exercices de pratique interactifs.",
       }),
     ]);

@@ -17,15 +17,16 @@ parenting-os/
 ├── DECISION_LOG.md            # numbered, immutable record of decisions (D-###)
 └── docs/
     └── phases/
-        └── phase-01-product-vision.md
+        ├── phase-01-product-vision.md
+        └── phase-02-product-requirements.md
 ```
 
 ## Phase tracker
 
 | Phase | Deliverable | Status | Version |
 |-------|-------------|--------|---------|
-| 1 | Product vision | ✅ Delivered — awaiting approval | 1.0.0 |
-| 2 | Product requirements document | Not started | — |
+| 1 | Product vision | ✅ Approved | 1.0.0 |
+| 2 | Product requirements document | ✅ Delivered — awaiting approval | 1.0.0 |
 | 3 | Information architecture | Not started | — |
 | 4 | Feature inventory | Not started | — |
 | 5 | User journeys | Not started | — |

@@ -89,3 +89,75 @@ Format: **ID · Date · Phase · Status** — decision, reasoning, alternatives 
 **Trade-offs:** Requires building and maintaining excellent curated escalation content; taxonomy maintenance is ongoing work.
 
 **Implications:** Phase 2 (red-flag taxonomy requirement), Phase 12 (routing architecture), Phase 16 (eval suite), clinical reviewer dependency (R-2).
+
+## D-008 · 2026-07-11 · Phase 2 · Accepted
+
+**Decision:** Requirement priority scheme P0 (ship-blocking) / P1 (v1.0 target, cuttable with CPO sign-off) / P2 (fast-follow) / P3 (roadmap, architecture-constraining only).
+
+**Reasoning:** Simple, testable, and maps directly to release gates. MoSCoW's "Should/Could" ambiguity invites scope drift.
+
+**Alternatives considered:** MoSCoW (rejected: ambiguity), RICE scoring (rejected: false precision without usage data pre-launch).
+
+**Trade-offs:** Coarse; relies on CPO judgment for P1 cuts.
+
+**Implications:** All phases 3–18 use this scheme.
+
+## D-009 · 2026-07-11 · Phase 2 · Accepted (resolves OQ-6)
+
+**Decision:** Co-caregiver model is two accounts with full parity per family — identical read/write access, no primary/secondary hierarchy. Either caregiver can revoke sharing.
+
+**Reasoning:** Matches how couples actually share infant care; simplest mental model and permission system; hierarchy generates support burden and encodes family-structure assumptions.
+
+**Alternatives considered:** Primary/secondary roles (rejected above), configurable granular roles (rejected: cognitive load for sleep-deprived users, YAGNI for v1).
+
+**Trade-offs:** Concurrent-edit conflict resolution becomes a hard requirement (NFR-6); merge semantics must be designed in Phase 9, not defaulted to last-writer-wins.
+
+**Implications:** Phase 9 (data model, merge semantics), Phase 13 (revocation, account separation on family breakdown — a real scenario the security design must handle).
+
+## D-010 · 2026-07-11 · Phase 2 · Accepted (resolves OQ-5)
+
+**Decision:** Launch with immunization schedules for all 13 provinces and territories, encoded in a single data model with automated cross-checks and a clinical review cadence.
+
+**Reasoning:** Provincial specificity is the differentiation; a subset launch turns the core promise into a regional asterisk. PHAC/provincial publication of schedules (A-8) makes full coverage tractable.
+
+**Alternatives considered:** Verified-subset launch by population (rejected: brand damage in excluded provinces exceeds the encoding savings), national-schedule-only (rejected: factually wrong for several provinces).
+
+**Trade-offs:** More up-front encoding and per-province verification; ongoing maintenance across 13 sources.
+
+**Implications:** Phase 9 (schedule data model), Phase 16 (per-province test suite is release-blocking), Phase 18 (review cadence), risk R-9.
+
+## D-011 · 2026-07-11 · Phase 2 · Accepted (resolves OQ-4)
+
+**Decision:** Compassionate mode (pregnancy loss / bereavement) is a P0 requirement (FR-3.4): immediate cessation of stage content and reminders, clinically reviewed support resources, pause/delete offered, no monetization surfaces in the flow. NICU path is P1 (FR-3.5).
+
+**Reasoning:** Continuing cheerful stage notifications after a loss is the single most catastrophic failure this product could have — for the user and for the brand. It is cheap to build and unconscionable to defer.
+
+**Alternatives considered:** P1/fast-follow (rejected: the failure mode exists from day one of launch), silent account-delete-only (rejected: abandons the user).
+
+**Trade-offs:** Requires clinically reviewed resource content before launch (adds to R-2 dependency).
+
+**Implications:** Phase 5 (journey design), Phase 15 (notification kill-switch semantics, release-blocking test), Phase 16.
+
+## D-012 · 2026-07-11 · Phase 2 · Accepted
+
+**Decision:** Accessibility standard is WCAG 2.2 AA across all P0 flows, with 44pt touch targets, dynamic type, and screen-reader support as explicit acceptance criteria.
+
+**Reasoning:** 2.2 is the current standard and its additions (target size, dragging alternatives) directly serve one-handed exhausted use; accessibility and the core persona's constraints are the same problem here.
+
+**Alternatives considered:** WCAG 2.1 AA (rejected: 2.2 exists and costs little more if adopted from the start), AAA (rejected: some AAA criteria conflict with practical design; adopt AAA items selectively where they serve the persona).
+
+**Trade-offs:** Testing overhead in Phase 16.
+
+**Implications:** Phases 6 (wireframes), 7 (design system tokens/contrast), 11 (frontend), 16 (a11y test gates).
+
+## D-013 · 2026-07-11 · Phase 2 · Accepted, research-sensitive (resolves OQ-3)
+
+**Decision:** Free tier: all tracking, immunization schedule + appointment organizer, safety-critical content, compassionate mode, data export/deletion. Paid tier: AI assistant beyond a limited free allowance, insights/pattern summaries, partner sync, full education library. One subscription per family. Paywall may never interpose on safety content or escalation paths (release-blocking test).
+
+**Reasoning:** Draws the line at the D-003 ethics floor (safety is never paid) while placing the highest-value, highest-cost capabilities (AI, insights) behind payment. Family-level billing matches D-009.
+
+**Alternatives considered:** Paid tracking (rejected: tracking is the habit loop and the context engine for the AI — gating it starves the product), free partner sync (open to reversal by research: sync may be a stronger free-tier retention driver than a paid converter).
+
+**Trade-offs:** Free AI allowance sizing (OQ-8) is a delicate conversion/serving-cost balance, deferred to pricing research.
+
+**Implications:** Phase 8 (entitlement architecture), Phase 14 (conversion analytics within anti-metric policy), risk R-11. Marked research-sensitive: pricing research (A-7) may move the sync/library lines without it counting as a silent change, per PRD §2.
